@@ -5,8 +5,10 @@ import sys
 ##########################################
 ## Options and defaults
 ##########################################
+
+
 def getOptions():
-    parser = optparse.OptionParser('python *.py [option]"')
+    parser = optparse.OptionParser('python *.py [option]')
     parser.add_option('--sdf',dest='input',help='intput sdf file', default='')
     parser.add_option('--fp',dest='fp',help='fingerprint type: tp,mc,mo (Topological Fingerprints, MACCS Keys, Morgan Fingerprints), default is mc', default='mc')
     parser.add_option('--radius',dest='radius',help=' the radius of the Morgan fingerprint, default is 2',type='int', default=2)   
@@ -17,9 +19,9 @@ def getOptions():
     parser.add_option('--out',dest='output',help='output sdf file', default='')
     options, args = parser.parse_args()
     
-    if options.input=='' or options.output=='':
+    if options.input == '' or options.output == '':
         parser.print_help()
-        print ("No input or output is provided")
+        print("No input or output is provided")
         sys.exit(1)
     return options
 
