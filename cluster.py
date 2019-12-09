@@ -30,7 +30,6 @@ class ChemParse(object):
                 fps = [MACCSkeys.GenMACCSKeys(m) for m in self.source]
         self.fps = fps
 
-        
     def clusterOutput(self, output, cdict):
         sdfout = Chem.SDWriter(output)
         

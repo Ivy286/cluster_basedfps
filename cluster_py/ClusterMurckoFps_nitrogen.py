@@ -1,4 +1,4 @@
-from cluster import *
+from ClusterFps import *
 import optparse
 import sys
 import os
