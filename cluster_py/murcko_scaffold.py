@@ -8,6 +8,7 @@ def merge_file(file_input1, file_input2):
     df1 = pd.read_csv(file_input1)
     df2 = pd.read_csv(file_input2)
     df_merge = pd.merge(df1, df2, left_on='drugs', right_on='drug_id').drop(['drugs', 'target_pdb_id', 'targets'], axis=1)
+    df_merge = df_merge[['drug_smiles', 'drug_id', 'pdb_id', 'Energy', 'pose_file_name']]
     return df_merge
 
 
@@ -130,7 +131,8 @@ def smis_dataprocess(read_text, smi_col=0, id_col=1):
     print('Total number of clusters:', len(scaffold_set))
     df_clustered = pd.merge(df_clustered, read_text[['drug_id', 'Energy']], left_on='ID', right_on='drug_id').drop(['drug_id'],axis=1)
 
-    df_clustered.to_csv('./clustered_smiles.csv', index=False)
+    df_clustered.to_csv('./clustered_based_scaffold.csv', index=False)
+    return df_clustered
 
 
 if __name__ == "__main__":
