@@ -1,0 +1,11 @@
+{
+"name":"cluster_cmps",
+"description":"cluster molecule",
+"docker_image":"harbor.atompai.com/nitrogen/xscience:v3", 
+"git_url":"git@bitbucket.org:he_xu/ret_qsar.git",
+"git_branch":"dev",
+"git_commit":"",
+"datasets":"10974",
+"command":"python3 ClusterMurckoFps_nitrogen.py --in=cluster_test.csv --out=testest.csv --fp=mo --cutoff=0.3",
+"hostname":"laojun"
+}
