@@ -1,6 +1,0 @@
-Smiles,ID,fp_cluster,isCentroid
-COc1ccc(CN2CCN(c3ccc(-c4cc(-c5cnn(C=N)c5)cn5ncc(C#N)c45)cn3)CC2)cn1,gen_enforce_r2_223189,1,flase
-COc1ccc(CN2CCN(c3ccc(-c4cc(-c5cccc(C(=O)NS)c5)cn5ncc(C#N)c45)cn3)CC2)cn1,gen_enforce_r2_191100,1,flase
-CC#C[C@H](C)n1cc(-c2cc(-c3ccc(N4CCN(Cc5ccc(OC)nc5)CC4)nc3)c3c(C#N)cnn3c2)cn1,gen_enforce_r2_118483,1,flase
-COc1ccc(CN2CCN(c3ccc(-c4cc(-c5c[nH]nc(C)c5=O)cn5ncc(C#N)c45)cn3)CC2)cn1,gen_enforce_r2_3263,1,true
-CCC(CS)n1cc(-c2cc(-c3ccc(N4CCN(Cc5ccc(OC)nc5)CC4)nc3)c3c(C#N)cnn3c2)cn1,gen_enforce_r2_14520,1,flase
