@@ -113,21 +113,21 @@ class VoxelMol:
     """
 
     def __init__(self, inputmol):
-        # if isinstance(inputmol, str):
-        #     self.mol = Chem.MolFromMol2File(inputmol)
-        # elif isinstance(inputmol, Chem.rdchem.Mol):
-        #     self.mol = inputmol
-        # else:
-        #     raise AttributeError("Please input filepath-to-mol2 or rdkit mol")
-        # self.voxels = self.voxelize()
         if isinstance(inputmol, str):
-            self.mol = Chem.SDMolSupplier(inputmol)
+            self.mol = Chem.MolFromMol2File(inputmol)
         elif isinstance(inputmol, Chem.rdchem.Mol):
             self.mol = inputmol
         else:
             raise AttributeError("Please input filepath-to-mol2 or rdkit mol")
         self.voxels = self.voxelize()
 
+        # if isinstance(inputmol, str):
+        #     self.mol = Chem.SDMolSupplier(inputmol)
+        # elif isinstance(inputmol, Chem.rdchem.Mol):
+        #     self.mol = inputmol
+        # else:
+        #     raise AttributeError("Please input filepath-to-mol2 or rdkit mol")
+        # self.voxels = self.voxelize()
 
     def _shuffle_loc(self, coords, by_range=1.0):
         """
