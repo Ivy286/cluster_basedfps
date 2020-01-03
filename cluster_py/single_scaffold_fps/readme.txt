@@ -38,6 +38,9 @@ Options:
   -h, --help            show this help message and exit
   --input1=INPUT1       format: csv
   --input2=INPUT2       format: csv
+  --smi_col=SMI_COL     if file is csv, please give smiles columns, default is
+                        Smiles
+  --id_col=ID_COL       if file is csv, please give ID columns, default is ID
   --fp=FP               fingerprint type: tp,mc,mo (Topological Fingerprints,
                         MACCS Keys, Morgan Fingerprints), default is mc
   --radius=RADIUS        the radius of the Morgan fingerprint, default is 2
@@ -52,7 +55,7 @@ Options:
                         when Murtagh is set as algorithm, default is Wards
   --out=OUTPUT          output sdf file or csv file
 
-命令示例：python ClusterMurckoFps.py --input1=xxx.csv --input2=xxx.csv --out=output.csv --fp=mo --cutoff=0.3  (0.82min/1w 1core)
+命令示例：python ClusterScaffoldFps.py --input1=xxx.csv --input2=xxx.csv --out=output.csv --fp=mo --cutoff=0.3  (0.82min/1w 1core)
 
 input1.csv文件示例：
 drugs	target_pdb_id	targets	drug_smiles

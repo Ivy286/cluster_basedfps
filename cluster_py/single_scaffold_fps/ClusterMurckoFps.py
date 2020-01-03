@@ -15,8 +15,8 @@ import os
 def getOptions():
     parser = optparse.OptionParser('python *.py [option]')
     parser.add_option('--in', dest='input', help='intput sdf, csv or smi file', default='')
-    parser.add_option('--smi_col', dest='smi_col', help='if file is csv, please give smiles columns, default is 0')
-    parser.add_option('--id_col', dest='id_col', help='if file is csv, please give ID columns, default is 1')
+    parser.add_option('--smi_col', dest='smi_col', help='if file is csv, please give smiles columns, default is Smiles')
+    parser.add_option('--id_col', dest='id_col', help='if file is csv, please give ID columns, default is ID')
     parser.add_option('--fp', dest='fp', help='fingerprint type: tp,mc,mo (Topological Fingerprints, MACCS Keys, Morgan Fingerprints), default is mc', default='mc')
     parser.add_option('--radius', dest='radius', help=' the radius of the Morgan fingerprint, default is 2',type='int', default=2)
     parser.add_option('--algorithm', dest='algorithm', help='cluster algorithm :b,m (Butina, Murtagh), default is b', default='b')
