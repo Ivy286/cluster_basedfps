@@ -2,13 +2,38 @@ from rdkit import Chem
 from rdkit.Chem.Scaffolds.MurckoScaffold import MakeScaffoldGeneric, GetScaffoldForMol
 import pandas as pd
 import os
+from openbabel import openbabel
 
 
+# input1=to_ledock file, input2=ledock_result file
+# merge two file, get smiles and id column
 def merge_file(file_input1, file_input2):
     df1 = pd.read_csv(file_input1)
     df2 = pd.read_csv(file_input2)
     df_merge = pd.merge(df1, df2, left_on='drugs', right_on='drug_id').drop(['drugs', 'target_pdb_id', 'targets'], axis=1)
     return df_merge
+
+
+# input: multiple splited mol2 files
+# convert mol2 to sdf using openbabel
+# write smiles and id_name using rdkit
+def mol2_to_smiles(mol2_path):
+    obConversion = openbabel.OBConversion()
+    obConversion.SetInAndOutFormats("mol2", "sdf")
+
+    mol = openbabel.OBMol()
+
+    mol2_ids = os.listdir(mol2_path)
+    core_smiles = []
+    core_ids = []
+    for item in mol2_ids:
+        obConversion.ReadFile(mol, os.path.join(mol2_path, item))
+        output_string = obConversion.WriteString(mol)
+        mol_object = Chem.MolFromMolBlock(output_string)
+        if mol_object:
+            core_smiles.append(Chem.MolToSmiles(mol_object))
+            core_ids.append(str(item[:-5]))
+    return core_smiles, core_ids
 
 
 def cluster_by_Murcko_scaffold(smiles_list, id_list, use_generics=True, remove_linker_side_chain=True):
@@ -128,7 +153,7 @@ def smis_dataprocess(read_text, smi_col=0, id_col=1):
     print('Length of count_list', len(count_list))
     df_clustered['num_count'] = count_list
     print('Total number of clusters:', len(scaffold_set))
-    df_clustered = pd.merge(df_clustered, read_text[['drug_id', 'Energy']], left_on='ID', right_on='drug_id').drop(['drug_id'],axis=1)
+    # df_clustered = pd.merge(df_clustered, read_text[['drug_id', 'Energy']], left_on='ID', right_on='drug_id').drop(['drug_id'],axis=1)
 
     df_clustered.to_csv('./clustered_smiles.csv', index=False)
     # return df_clustered
@@ -138,4 +163,6 @@ if __name__ == "__main__":
 
     os.chdir('./')
     df = merge_file('r2_select_top1w.csv', 'r2_select_top1w_docking_result_processed.csv')
+    # smis_list, ids_list = mol2_to_smiles('./core')
+    # df = pd.DataFrame({'core_smiles': smis_list, 'core_id': ids_list})
     smis_dataprocess(df, smi_col=0, id_col=1)
